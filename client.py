@@ -29,3 +29,8 @@ if __name__ == "__main__":
     }}""")
     if not m_socket.send_msg(msg):
         print("failed to send the message")
+    
+    print("closing now the socket")
+    if not m_socket.close(): print("failed to close the socket properly", file=sys.stderr)
+    else:
+        print("socket closed")

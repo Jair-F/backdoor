@@ -35,6 +35,10 @@ def handle_server(conn:socket.socket, addr:socket.AddressInfo):
     except Exception as err:
         print(F"UNEXPECTED ERROR: {str(err)}", file=sys.stderr)
     
+    msg = m_socket.recv_msg()
+    if msg == None:
+        print("connection was closed by the client")
+    
     return None
 
 
@@ -65,6 +69,7 @@ if __name__ == "__main__":
         #handle_server(conn, addr)
         print(addr)
 
+        print(len(client_threads))
         if len(client_threads) > 0:
             for thread in client_threads:
                 if not thread.is_alive():

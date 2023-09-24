@@ -11,13 +11,13 @@ import tools.message as message
     00000000        00000000 00000000 00000000 00000000         01010101010
 """
 
-SOCK_MSG_HEADER = 1
-SOCK_MSG_LEN_IND = 4 # in bytes
-SOCK_STR_ENCODING = "UTF-8"
+SOCK_MSG_HEADER:int = 1
+SOCK_MSG_LEN_IND:int = 4 # in bytes
+SOCK_STR_ENCODING:str = "UTF-8"
 
 # message header codes for communication between the sockets - closing ...
-SOCK_HEADER_NORMAL_MSG = 0b00000000
-SOCK_HEADER_CONNECTION_CLOSE = 0b00000001
+SOCK_HEADER_NORMAL_MSG:int = 0b00000000
+SOCK_HEADER_CONNECTION_CLOSE:int = 0b00000001
 
 class my_socket:
     """
@@ -81,7 +81,7 @@ class my_socket:
             raises an BrokenPipeError if connection broken
         """
         # receiving the msg header
-        msg_header:bytes = self.__recv(SOCK_MSG_HEADER) # one byte of header
+        msg_header:int = int.from_bytes(self.__recv(SOCK_MSG_HEADER), signed=True) # one byte of header
 
         if msg_header == SOCK_HEADER_CONNECTION_CLOSE:
             self.__is_closed = True
@@ -123,7 +123,7 @@ class my_socket:
         """
         success:bool = self.__send(int.to_bytes(SOCK_HEADER_CONNECTION_CLOSE, length=1, signed=True))
         # send a close msg to the other socket
-        self.socket.shutdown()
+        self.socket.shutdown(socket.SHUT_RDWR)
         self.socket.close()
         self.__is_closed = True
         return success
