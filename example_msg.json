@@ -1,0 +1,9 @@
+{
+    "command": "shell",
+    "command_attr": {
+        "argv": [
+            "--help",
+            "--help"
+        ]
+    }
+}
