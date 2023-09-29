@@ -1,0 +1,10 @@
+{
+    "victim_list": [
+        "list of victim hosntames - only for a client",
+        "PC",
+        "Windows"
+    ],
+    "version": 0.1,
+    "status_code": 0,
+    "status_msg": ""
+}

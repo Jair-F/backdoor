@@ -24,13 +24,15 @@ class message:
 
     @property
     def msg(self) -> dict:
+        """
+            returns the python object of the whole msg.
+        """
         return self._msg
     
     @property
-    def command(self) -> str:
-        return self._msg[0]["command"]
-    
-    @property
-    def command_attr(self) -> list:
-        return self._msg[1]
+    def status_code(self) -> int:
+        return self._msg["status_code"]
 
+    @property
+    def status_msg(self) -> str:
+        return self._msg["status_msg"]
